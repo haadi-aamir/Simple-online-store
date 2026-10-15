@@ -1,0 +1,57 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Review Product{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/review.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="page-content">
+        <div class="review-container-main">
+            <div class="review-header">
+                <h2 class="review-title">Create Review</h2>
+                <div class="review-product-info">
+                    <div class="review-product-image-container">
+                        {% if product.image %}
+                            <img  class="review-product-image" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img class="review-product-image" src="{% static 'onlineStore/product_images/no_image.jpg' %}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <h2 class="review-product-name">{{ product.name }}</h2>
+                </div>
+            </div>
+            <div class="review-form-container">
+                <form class="review-form" action="{% url 'review' product_id=product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="review-rating-container">
+                        <label for="rating" class="review-rating-label">Rating:</label>
+                        <div class="star-rating">
+                            <input type="radio" name="rating" value="5" id="star1">
+                            <label for="star1" >★</label>
+
+                            <input type="radio" name="rating" value="4" id="star2">
+                            <label for="star2" >★</label>
+
+                            <input type="radio" name="rating" value="3" id="star3">
+                            <label for="star3" >★</label>
+
+                            <input type="radio" name="rating" value="2" id="star4">
+                            <label for="star4" >★</label>
+
+                            <input type="radio" name="rating" value="1" id="star5">
+                            <label for="star5">★</label>
+                        </div>
+                    </div> 
+                    <div class="review-comment-container">
+                        <label for="comment">Write your review:</label>
+                        <textarea name="comment" id="comment" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="review-submit-btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

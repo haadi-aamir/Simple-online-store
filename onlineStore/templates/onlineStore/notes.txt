@@ -1,0 +1,9 @@
+FEATURES TO ADD:
+🛍️ Product catalog – Displays products with descriptions, prices, and images.
+🔍 Search and filtering – Helps customers find products.
+🛒 Shopping cart – Stores items the customer wants to buy.
+💳 Checkout – Collects shipping information and payment.
+👤 User accounts – Allows customers to track orders and save addresses.
+📦 Order management – Lets users view their order history and status.
+⭐ Reviews and ratings – Customers can leave feedback.
+❤️ Wishlist (optional) – Save products for later.

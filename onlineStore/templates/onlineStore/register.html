@@ -1,0 +1,62 @@
+{% extends 'onlineStore/auth_base.html' %}
+
+{% block form_type %}Create an account{% endblock %}
+
+{% block form %}
+
+    {% if error_message %}
+        <div class="auth-alert" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+
+        <div class="auth-field">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="username"
+                required
+            >
+        </div>
+
+        <div class="auth-field">
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="new-password"
+                required
+            >
+        </div>
+
+        <div class="auth-field">
+            <label for="confirm_password">Confirm password</label>
+            <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                autocomplete="new-password"
+                required
+            >
+        </div>
+
+        <button type="submit" class="auth-submit">
+            <span>Create account</span>
+            <span class="auth-submit-arrow" aria-hidden="true">→</span>
+        </button>
+    </form>
+
+    <p class="auth-switch">
+        Already have an account?
+        <a href="{% url 'login' %}">Log in</a>
+    </p>
+
+    <a class="auth-back-link" href="/">← Back to store</a>
+
+{% endblock %}

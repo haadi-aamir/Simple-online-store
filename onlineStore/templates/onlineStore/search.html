@@ -1,0 +1,95 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Search Results{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/search.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="page-content">
+        <div class="results-container">
+
+            <div class="results-header">
+                <div class="results-header-left">
+                    <h2>Search Results for "{{ request.GET.q }}"</h2>
+                    <p>Check each product page for more details.</p>
+                </div>
+                <div class="results-header-right">
+                    <button class="results-header-sort-btn">Sort By <i class="bi bi-chevron-down"></i></button>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="product-cards-grid">
+               {% if products %}
+                    {% for product in products %}
+                        <div class="product-card">
+                            <a href="{% url 'product_page' product.id %}" class="product-card-top">
+                                {% if product.image %}
+                                    <div class="product-image-container">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </div>
+                                {% else %}
+                                    <span class="product-image-placeholder">No Image Available</span>
+                                {% endif %}
+                            </a>
+                            <div class="product-card-bottom">
+                                <a href="{% url 'product_page' product.id %}" class="product-name">{{ product.name }}</a>
+                                <span class="product-price">RS. {{ product.price }}</span>
+                                <div class="product-rating-container" data-rating={{ product.average_rating|default:0 }}>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No products found for your search.</p>
+                {% endif %}
+            </div>
+
+            <hr class="divider">
+
+            {% if related_products %}
+                <div class="related_products_header">
+                    <h2>Related Products</h2>
+                    <p>Check each product page for more details.</p>
+                </div>
+                
+                <div class="product-cards-grid">  
+                    {% for product in related_products %}
+                        <div class="product-card">
+                            <a href="{% url 'product_page' product.id %}" class="product-card-top">
+                                {% if product.image %}
+                                    <div class="product-image-container">
+                                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </div>
+                                {% else %}
+                                    <span class="product-image-placeholder">No Image Available</span>
+                                {% endif %}
+                            </a>
+                            <div class="product-card-bottom">
+                                <a href="{% url 'product_page' product.id %}" class="product-name">{{ product.name }}</a>
+                                <span class="product-price">RS. {{ product.price }}</span>
+                                <span class="product-review-count">{{ product.review_count }} reviews</span>
+                                <div class="product-rating-container" data-rating={{ product.average_rating|default:0 }}>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                    <span class="rating-star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>   
+            {% endif %}
+        </div>
+    </div>  
+{% endblock %}

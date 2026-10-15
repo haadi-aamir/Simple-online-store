@@ -1,0 +1,194 @@
+.page-content {
+    min-width: 900px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.checkout-page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    color: var(--text-color-dark);
+}
+.checkout-left {
+    flex: 1;
+    background-color: var(--card-bg);
+    padding: 20px;
+}
+.checkout-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.checkout-header-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0;
+}
+
+.checkout-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+}
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    max-height: 500px;
+    gap: 8px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    opacity: 1;
+    overflow: hidden;
+    transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    max-height 0.4s ease,
+    margin 0.4s ease,
+    padding 0.4s ease;
+}
+.checkout-item.removing {
+    opacity: 0;
+    transform: translateX(20px);
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.checkout-item-select {
+    flex: 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.checkout-item-img-container {
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    margin-right: 8px;
+}
+.checkout-item-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.checkout-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    padding-left: 8px;
+}
+.checkout-item-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0;
+}
+.checkout-item-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 0;
+}
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.quantity-selector h6 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 2px;
+}
+
+.quantity-selector .quantity-number {
+    font-size: 14px;
+    font-weight: 600;
+}
+.checkout-remove-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 2px;
+}
+.checkout-remove-btn {
+    font-size: 16px;
+    color: var(--color-secondary);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.checkout-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 1 340px;
+    min-width: 280px;
+    height: fit-content;
+    background-color: var(--card-bg);
+    padding: 20px;
+    box-sizing: border-box;
+}
+.checkout-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.checkout-summary h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+}
+.checkout-summary .subtotal, .total-price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--dark-color);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+.subtotal p, .total-price p {
+    margin: 0;
+}
+.subtotal span, .total-price span {
+    font-size: 14px;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+.order-btn-container {
+    align-self: center;
+}
+.order-btn { 
+    font-size: 14px;
+    width: 240px;
+    padding: 12px 20px;
+    margin-top: 5px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: box-shadow 0.2s ease-in-out , transform 0.2s ease-in-out;
+    text-align: center;
+}
+.order-btn:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-1px);
+}

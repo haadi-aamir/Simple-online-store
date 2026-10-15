@@ -1,0 +1,80 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Shopping Cart{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/cart.css' %}">
+{% endblock %}
+
+{% block main %}
+    <form method="POST" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <div class="page-content">
+            <div class="cart-page-container" id="cart-page-container">
+                <div class="cart-left">
+                    <div class="cart-header">
+                        <h2 class="cart-header-title">Shopping Cart</h2>
+                        <span class="items-select-toggle" id="select-all-container">No items selected 
+                            <button type="button" class="toggle-btn">Select all items</button>
+                        </span>
+                        <span class="items-select-toggle" id="deselect-container" style="display: none;">All items selected
+                            <button type="button" class="toggle-btn">Deselect all items</button>
+                        </span>
+                    </div>
+                    {% if cart_items %}
+                        <div class="cart-items">
+                            {% for item in cart_items %}
+                                <div class="cart-item">
+                                    <div class="cart-item-select">
+                                        <input type="checkbox" class="cart-item-checkbox"
+                                        name="item" value="{{ item.id }}"
+                                        data-price="{{ item.product.price }}" data-quantity="{{ item.quantity }}">
+                                    </div>
+                                    <div class="cart-item-img-container">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="cart-item-image">
+                                    </div>
+                                    <div class="cart-item-details">
+                                        <h4 class="cart-item-title">{{ item.product.name }}</h4>
+                                        <p class="cart-item-price">RS. {{ item.product.price }}</p>
+                                        <div class="quantity-selector" data-stock="{{ item.product.stock }}" data-product-id="{{ item.product.id }}">
+                                            <h6>Quantity:</h6>
+                                            <button type="button" class="decrease-btn" id="cart-decrease-btn">
+                                                <i class="bi bi-dash-square"></i>
+                                            </button>
+
+                                            <span class="quantity-value" id="cart-quantity-value">{{ item.quantity }}</span>
+                                            
+                                            <button type="button" class="increase-btn" id="cart-increase-btn">
+                                                <i class="bi bi-plus-square"></i>
+                                            </button>  
+                                        </div>
+                                        <div class="cart-remove-btn-container">
+                                            <button type="button" class="cart-remove-btn" id="cart-remove-btn" data-product-id="{{ item.product.id }}">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                    {% endif %}
+                </div>
+                <div class="cart-right">
+                    <div class="cart-summary">
+                        <h3>Cart Summary</h3>
+                        <div class="subtotal">
+                            <p id="cart-summary-subtotal">Subtotal (<span id="cart-summary-subtotal-items">1</span> items):</p>
+                        </div>
+                        <div class="total-price">
+                            <p>Total Price:</p>
+                            <span id="cart-summary-total-price">RS. 0</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

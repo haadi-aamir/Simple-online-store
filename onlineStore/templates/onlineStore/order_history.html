@@ -1,0 +1,53 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Order History{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/order_history.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="page-content">
+        <div class="order-history-container">
+            <div class="order-history-header">
+                <h2>Order History</h2>
+                <button class="order-history-sort-btn">Sort By <i class="bi bi-chevron-down"></i></button>
+            </div>
+            {% if orders %}
+                <div class="orders-container">
+                    {% for order in orders %}
+                    <div class="order">
+                        <div class="order-header">
+                            <span class="order-history-item-date">{{ order.date_ordered }}</span>
+                            <span class="order-history-item-id">Order ID: #{{ order.id }}</span>
+                        </div>
+                        <div class="order-items">
+                            {% for item in order.items.all %}
+                                <div class="order-item">
+                                    <div class="order-item-left">
+                                        <div class="order-img-container">
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="order-image">
+                                        </div>
+                                        <div class="order-item-details">
+                                            <span class="item-name">{{ item.product.name }}</span>
+                                            <span class="item-quantity">Quantity: {{ item.quantity }}</span>
+                                            <span class="item-price">RS. {{ item.price }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="order-item-right">
+                                        <a href="{% url 'product_page' product_id=item.product.id %}" class="order-item-view-btn">View Product</a>
+                                        <a href="{% url 'review' product_id=item.product.id %}" class="order-item-review-btn">Write Review</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>  
+                    </div>
+                    {% endfor %} 
+                </div>
+            {% else %}
+                <p>No order history available.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

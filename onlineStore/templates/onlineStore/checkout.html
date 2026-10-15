@@ -1,0 +1,64 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Shopping checkout{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/checkout.css' %}">
+{% endblock %}
+
+{% block main %}
+    {% csrf_token %}
+    <div class="page-content">
+        <div class="checkout-page-container" id="checkout-page-container">
+            <div class="checkout-left">
+                <div class="checkout-header">
+                    <h2 class="checkout-header-title">Checkout</h2>
+                </div>
+                {% if checkout_items %}
+                    <div class="checkout-items">
+                        {% for item in checkout_items %}
+                            <div class="checkout-item" data-cart-item-id="{{ item.id }}">
+                                <div class="checkout-item-img-container">
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="checkout-item-image">
+                                </div>
+                                <div class="checkout-item-details">
+                                    <h4 class="checkout-item-title">{{ item.product.name }}</h4>
+                                    <p class="checkout-item-price" data-price="{{ item.product.price }}">RS. {{ item.product.price }}</p>
+                                    <div class="quantity-selector" data-stock="{{ item.product.stock }}" data-product-id="{{ item.product.id }}">
+                                        <h6>Quantity:</h6>
+                                        <span class="quantity-value" id="checkout-quantity-value">{{ item.quantity }}</span> 
+                                    </div>
+                                    <div class="checkout-remove-btn-container">
+                                        <button class="checkout-remove-btn" data-product-id="{{ item.product.id }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="empty-cart-message">Your checkout is empty.</p>
+                {% endif %}
+            </div>
+            <div class="checkout-right">
+                <div class="checkout-summary">
+                    <h3>checkout Summary</h3>
+                    <div class="subtotal">
+                        <p id="checkout-summary-subtotal">Subtotal (<span id="checkout-summary-subtotal-items">1</span> items):</p>
+                    </div>
+                    <div class="total-price">
+                        <p>Total Price:</p>
+                        <span id="checkout-summary-total-price">RS. 0</span>
+                    </div>
+                    <div class="order-btn-container">
+                        <button class="order-btn" id="order-btn">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

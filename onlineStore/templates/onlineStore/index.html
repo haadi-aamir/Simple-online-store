@@ -1,0 +1,170 @@
+{% extends "onlineStore/store_base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/index.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="page-content">
+        <h1 class="landing-heading">Happy <span>Shopping</span></h1>
+        <hr class="divider">
+        <div class="products-nav-card-grid">
+            <div class="products-nav-card">
+                <p class="products-nav-card-title">Must have for every student</p>
+                <a href="{% url 's' %}?q=Stationary"> 
+                    <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-study.jpg' %}" alt="Student Image">
+                </a>
+            </div>
+            <div class="products-nav-card">
+                <p class="products-nav-card-title">Get your game on</p>
+                <a href="{% url 's' %}?q=Gaming"> 
+                    <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-gaming.jpg' %}" alt="Game Image">
+                </a>
+            </div>
+            <div class="products-nav-card">
+                <p class="products-nav-card-title">Home & Kitchen</p>
+                    <div class="products-nav-card-gridtype-imgs">
+                        <a href="{% url 's' %}?q=Kitchen">
+                            <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-kitchen-home-1.jpg' %}" alt="Home and Kitchen Image">
+                            <p>Kitchen and dining</p>
+                        </a>
+                        <a href="{% url 's' %}?q=home improvement">
+                            <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-kitchen-home-2.jpg' %}" alt="Home and Kitchen Image">
+                            <p>Home Improvement</p>
+                        </a>
+                        <a href="{% url 's' %}?q=bedding">
+                            <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-kitchen-home-3.jpg' %}" alt="Home and Kitchen Image">
+                            <p>bedding</p>
+                        </a>
+                        <a href="{% url 's' %}?q=home decor">
+                            <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-kitchen-home-4.jpg' %}" alt="Home and Kitchen Image">
+                            <p>Home Decor</p>
+                        </a>
+                    </div>
+                </a>
+            </div>
+            <div class="products-nav-card">
+                <p class="products-nav-card-title">Clothing</p>
+                <div class="products-nav-card-gridtype-imgs">
+                     <a href="{% url 's' %}?q=Clothing">
+                        <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-clothing-1.jpg' %}" alt="Clothing Image">
+                        <p>Jeans</p>
+                    </a>
+                     <a href="{% url 's' %}?q=women clothing">
+                        <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-clothing-2.jpg' %}" alt="Clothing Image">
+                        <p>Tops</p>
+                    </a>
+                    <a href="{% url 's' %}?q=women clothing">
+                        <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-clothing-3.jpg' %}" alt="Clothing Image">
+                        <p>Women's Dresses</p>
+                    </a>
+                    <a href="{% url 's' %}?q=shoes">
+                        <img class="product-nav-card-img" src="{% static 'onlineStore/images/products-nav-cards/nav-card-clothing-4.jpg' %}" alt="Clothing Image">
+                        <p>Shoes</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="products-nav-scroll">
+            <h3 class="products-nav-scroll-heading">Top sellers in Fitness</h3>
+
+            <div class="products-nav-scroll-container">
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 45 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-1.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 46 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-2.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 47 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-3.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 31 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-4.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 31 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-5.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 33 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-6.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 48 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-7.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 49 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-9.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 50 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-fitness-10.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="products-nav-scroll">
+            <h3 class="products-nav-scroll-heading">Computer Accessories</h3>
+
+            <div class="products-nav-scroll-container">
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 51 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-1.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 52 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-2.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 53 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-3.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 54 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-4.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 55 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-5.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 56 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-7.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 57 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-8.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+                <div class="product-nav-scroll-item">
+                    <a href="{% url 'product_page' 58 %}">
+                        <img class="product-nav-scroll-img" src="{% static 'onlineStore/images/products-nav-cards/nav-scroll-computer-9.jpg' %}" alt="Product Image">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

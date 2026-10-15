@@ -1,0 +1,168 @@
+
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+{% block title %}Search Results{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'onlineStore/css/product_page.css' %}">
+{% endblock %}
+
+{% block main %}
+
+{% csrf_token %}
+
+    <div class="page-content">
+        <div class="product-page-main-container">
+            <div class="product-page-top">
+                <div class="product-left">
+                    <div class="product-image-container">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                        {% else %}
+                            <img src="{% static 'onlineStore/product_images/no_image.jpg' %}" alt="{{ product.name }}" class="product-image-placeholder">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="product-center">
+                    <div class="product-center-top">
+                        <h1 class="product-name" id="product-name">{{ product.name }}</h1>
+                        <div class="product-rating-container" data-rating={{ avg_rating|default:0 }}>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                        </div>
+                    </div>
+                    <div class="product-center-middle">
+                        <span class="product-price">RS. {{ product.price }}</span>
+                    </div>
+                    <div class="product-center-bottom">
+                        <div class="product-description-container">
+                            <p class="product-description" id="product-description">{{ product.description }}</p>
+                            <div class="fade-overlay" id="fade-overlay"></div>
+                        </div>
+                        <button class="read-more-btn" id="read-more-btn">Read More</button>
+                        <button class="read-less-btn" id="read-less-btn">Read Less</button>
+                    </div>
+                </div>
+                <div class="product-right">
+                    <div class="product-right-section">
+                        <h3>Delivery</h3>
+                        <div class="product-right-section-item">
+                            <i class="bi bi-truck"></i>
+                            <span>Free Delivery</span>
+                        </div>
+                        <div class="product-right-section-item">
+                            <i class="bi bi-calendar"></i>
+                            <span>Delivery in 3-5 days</span>
+                        </div>
+                    </div>
+                    <div class="product-right-section">
+                        <h3>Return & Warranty</h3>
+                        <div class="product-right-section-item">
+                            <i class="bi bi-arrow-counterclockwise"></i>
+                            <span>7 Days Return</span>
+                        </div>
+                        <div class="product-right-section-item">
+                            <i class="bi bi-shield-check"></i>
+                            <span>No warranty</span>
+                        </div>
+                    </div>
+                    <div class="product-right-purchase" id="product-right-purchase">
+                        {% if user.is_authenticated %}
+                            {% if product.stock <= 0 %}
+                                <div class="out-of-stock-message" id="out-of-stock-message">Item out of stock</div>
+                            {% else %}
+                                <div class="product-right-purchase-quantity">
+                                    <h6>Quantity</h6>
+                                    <div class="quantity-selector" id="quantity-selector" data-stock="{{ product.stock }}">
+                                        <button class="decrease-btn" id="decrease-btn">
+                                            <i class="bi bi-dash-square"></i>
+                                        </button>
+                                        <span class="quantity-value" id="quantity-value">1</span>
+                                        <button class="increase-btn" id="increase-btn">
+                                            <i class="bi bi-plus-square"></i>
+                                        </button>  
+                                    </div>
+                                </div>
+                     
+                               <div class="product-right-purchase-buttons">
+                                {% if not in_cart %}
+                                    <div class="add-to-cart-wrapper">
+                                        <button
+                                            class="add-to-cart-btn"
+                                            id="add-to-cart-btn"
+                                            data-product-id="{{ product.id }}">
+                                            Add to Cart
+                                        </button>
+                                        <span class="already-in-cart" id="already-in-cart">
+                                            Added to Cart
+                                            <a href="{% url 'cart' %}">View Cart</a>
+                                        </span>
+                                    </div>
+                                {% else %}
+                                    <span class="already-in-cart already-in-cart-visible">
+                                        Item already in Cart
+                                        <a href="{% url 'cart' %}">View Cart</a>
+                                    </span>
+                                {% endif %}
+
+                                <button class="buy-now-btn" id="buy-now-btn">
+                                    Buy Now
+                                </button>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            <p class="not-loged-in">Please <a href="{% url 'login' %}">Log in</a> to purchase items.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="product-page-bottom">
+                <h2 class="product-page-bottom-title">Rating and Reviews of Pride and Prejudice</h2>
+                <div class="product-page-bottom-rating-container">
+                    <div class="product-page-bottom-rating">
+                        <div class="product-rating-container bottom" data-rating={{ avg_rating|default:0 }}>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                            <span class="rating-star">★</span>
+                        </div>
+                        <h3 class="product-page-bottom-rating-number">{{ avg_rating|default:0 }}/5</h3>
+                    </div>
+                    <span class="product-page-bottom-rating-count">{{ review_count|default:0 }} reviews</span>
+                </div>
+                <div class="product-page-bottom-reviews-container">
+                    <h2 class="product-page-bottom-reviews-title">Product Reviews</h2>
+                    {% if product_reviews %}
+                        <div class="reviews-list">
+                            {% for review in product_reviews %}
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <h4 class="review-username">{{ review.user.username }}</h4>
+                                        <div class="product-rating-container review-rating" data-rating={{ review.rating|default:0 }}>
+                                            <span class="rating-star">★</span>
+                                            <span class="rating-star">★</span>
+                                            <span class="rating-star">★</span>
+                                            <span class="rating-star">★</span>
+                                            <span class="rating-star">★</span>
+                                        </div>
+                                    </div>
+                                    <div class="review-body">
+                                        <p>{{ review.comment }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="no-reviews">No reviews yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

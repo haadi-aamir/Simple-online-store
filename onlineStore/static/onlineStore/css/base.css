@@ -1,0 +1,35 @@
+/*GENERAL STYLES*/
+
+:root {
+    /*COLORS*/
+    --card-bg: rgb(248, 248, 248);
+    --color-primary: #F1F3F5;
+    --color-secondary: #F97316;
+    --color-tertiary: #DEE2E6;
+    --text-color-light: #F8F9FA;
+    --text-color-dark: rgb(15, 17, 17);
+    --dark-color: rgb(15, 17, 17);
+    --dark-secondary-color: rgb(35, 47, 62);
+    --dark-three : rgb(48, 63, 81);
+    --border-color: #D5D9D9;
+    --border-color-dark: #C7CCCE;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-primary);
+    color: var(--text-color-light);
+}
+html,body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

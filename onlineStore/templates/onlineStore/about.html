@@ -1,0 +1,29 @@
+{% extends 'onlineStore/store_base.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="about-heading-container">
+        <h1 class="about-heading">About <span>Us</span></h1>
+    </div>
+    <hr class="divider">
+    <div class="about-container">  
+        <div class="about-content">  
+            <div>
+                <h3>Simple shopping. Simple design.</h3>
+                <p> We're a small online store focused
+                    on providing a straightforward way
+                    to browse and purchase products.
+                </p>
+            </div>
+            <div>
+                <h3>Our Goal</h3>
+                <p> This project is built to explore
+                    e-commerce functionality and modern
+                    web development.
+                </p>
+            </div>
+
+            <a class="shop-now-button" href="{% url 'index' %}">Shop Now</a>
+        </div>
+    </div>
+{% endblock %}
