@@ -1,6 +1,6 @@
 # Simple Online Store
 
-A Django-based e-commerce website built with Python, Django, HTML, CSS, and JavaScript. The project provides a foundation for an online shopping experience, including user accounts, product search, cart functionality, ordering, and order history.
+A Django-based e-commerce website built with Python, Django, HTML, CSS, and JavaScript. The project provides a foundation for an online shopping experience, including user accounts, product search, product reviews, cart functionality, ordering, and order history.
 
 **Repository:** [haadi-aamir/Simple-online-store](https://github.com/haadi-aamir/Simple-online-store)
 
